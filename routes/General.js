@@ -6,7 +6,7 @@ const authMiddleware = require("../authMiddleware")
 
 generalRouter.get("/loyal", authMiddleware, async(req, res) => {
     try{
-        const loyal = await Guests.find().sort({nbr_bookings : -1}).limit(2)
+        const loyal = await Guests.find().sort({nbr_bookings : -1}).limit(4)
         if (loyal.length == 0){
             console.log("il n y'a aucun guest")
             res.status(404).send("il n y'a aucun guest")
