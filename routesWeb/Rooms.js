@@ -2,7 +2,7 @@ const express = require("express")
 const roomsRouter = express.Router()
 const Rooms = require("../models/Rooms")
 const Bookings = require("../models/Bookings")
-const authMiddleware = require("../authMiddleware")
+const authMiddleware = require("../authMiddlewareWeb")
 
 roomsRouter.post("/addRoom", authMiddleware, async (req, res) => {
     try {

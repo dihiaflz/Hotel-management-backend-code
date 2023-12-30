@@ -2,10 +2,10 @@ const express = require("express")
 const usersRouter = express.Router()
 const Users = require("../models/Users")
 const bcrypt = require("bcrypt")
-const authMiddleware = require("../authMiddleware")
+const authMiddleware = require("../authMiddlewareApp")
 
 
-usersRouter.post("/", authMiddleware, async (req, res) => {
+usersRouter.post("/addUser", authMiddleware, async (req, res) => {
     try{
     const {nom, prenom, email, password} = req.body
     const salt = await bcrypt.genSalt(10)
@@ -25,7 +25,7 @@ usersRouter.post("/", authMiddleware, async (req, res) => {
     }
 })
 
-usersRouter.get("/", authMiddleware, async (req, res) => {
+usersRouter.post("/", authMiddleware, async (req, res) => {
     try {
         const users = await Users.find({status : "normal"})
         if(users.length == 0){

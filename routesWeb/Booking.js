@@ -3,7 +3,7 @@ const bookingRouter = express.Router()
 const Bookings = require("../models/Bookings")
 const Rooms = require("../models/Rooms")
 const Guests = require("../models/Guests")
-const authMiddleware = require("../authMiddleware")
+const authMiddleware = require("../authMiddlewareWeb")
 
 bookingRouter.get("/", authMiddleware, async (req, res) => {
     try {

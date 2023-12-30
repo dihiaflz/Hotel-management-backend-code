@@ -32,21 +32,42 @@ app.use(cors({
     origin: '*'
 }));
 
-const signIn = require("./routes/SignIn")
+// web section
+const signIn = require("./routesWeb/SignIn")
 app.use("/signIn", signIn)
 
-const dashboard = require("./routes/Dashboard")
+const dashboard = require("./routesWeb/Dashboard")
 app.use("/dashboard", dashboard)
 
-const rooms = require("./routes/Rooms")
+const rooms = require("./routesWeb/Rooms")
 app.use("/rooms", rooms)
 
-const general = require("./routes/General")
+const general = require("./routesWeb/General")
 app.use("/general", general)
 
-const booking = require("./routes/Booking")
+const booking = require("./routesWeb/Booking")
 app.use("/booking", booking)
-const users = require("./routes/Users")
+
+const users = require("./routesWeb/Users")
 app.use("/users", users)
+
+// app section
+const signInApp = require("./routesApp/SignIn")
+app.use("/signInApp", signInApp)
+
+const dashboardApp = require("./routesApp/Dashboard")
+app.use("/dashboardApp", dashboardApp)
+
+const roomsApp = require("./routesApp/Rooms")
+app.use("/roomsApp", roomsApp)
+
+const generalApp = require("./routesApp/General")
+app.use("/generalApp", generalApp)
+
+const bookingApp = require("./routesApp/Booking")
+app.use("/bookingApp", bookingApp)
+
+const usersApp = require("./routesApp/Users")
+app.use("/usersApp", usersApp)
 
 

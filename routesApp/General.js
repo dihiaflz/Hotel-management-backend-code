@@ -1,10 +1,9 @@
 const express = require("express")
 const generalRouter = express.Router()
-const Users = require("../models/Users")
 const Guests = require("../models/Guests")
-const authMiddleware = require("../authMiddleware")
+const authMiddleware = require("../authMiddlewareApp")
 
-generalRouter.get("/loyal", authMiddleware, async(req, res) => {
+generalRouter.post("/loyal", authMiddleware, async(req, res) => {
     try{
         const loyal = await Guests.find().sort({nbr_bookings : -1}).limit(4)
         if (loyal.length == 0){
@@ -20,7 +19,7 @@ generalRouter.get("/loyal", authMiddleware, async(req, res) => {
     }
 })
 
-generalRouter.get("/actualUser", authMiddleware, async (req, res) => {
+generalRouter.post("/actualUser", authMiddleware, async (req, res) => {
     try {
         console.log(req.user)
         if(!req.user){

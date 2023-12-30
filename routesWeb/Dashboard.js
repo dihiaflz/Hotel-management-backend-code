@@ -2,8 +2,7 @@ const express = require("express")
 const dashboardRouter = express.Router()
 const Bookings = require("../models/Bookings")
 const Guests = require("..//models/Guests")
-const authMiddleware = require("../authMiddleware")
-const bookingRouter = require("./Booking")
+const authMiddleware = require("../authMiddlewareWeb")
 
 
 dashboardRouter.get("/guests", authMiddleware, async(req, res) => {
