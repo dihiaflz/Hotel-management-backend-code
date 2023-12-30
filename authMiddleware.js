@@ -8,10 +8,10 @@ module.exports = (req, res, next) => {
       return res.status(401).json({ error: 'Unauthorized - Missing Token' });
     }
     const data = jwt.verify(authHeader, process.env.SECRET);
-    if (!data.sub) {
+    if (!data.user) {
       return res.status(401).json({ error: 'Unauthorized - Invalid Token' });
     }
-    req.user = data.sub
+    req.user = data.user
     next();
   } catch (error) {
     if (error.name === 'TokenExpiredError') {

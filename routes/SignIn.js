@@ -14,16 +14,9 @@ signInRouter.post("/", async (req, res) => {
         }else{
             const valide = await bcrypt.compare(req.body.password, user.password)
             if(valide){
-                const expirationTimeInSeconds = 3600
-                const expirationTime = Math.floor(Date.now() / 1000) + expirationTimeInSeconds
-                const tokenPayload = {
-                    sub: user,
-                    exp: expirationTime,
-                  };
-                const token = jwt.sign(tokenPayload, process.env.SECRET)
+                const token = jwt.sign({user : user}, process.env.SECRET, {expiresIn: "7d"})
                 console.log("Success sign in")
                 res.status(200).send(token)
-                // à rendre redirect
             }else{
                 console.log("mot de passe incorrect")
                 res.status(404).send("mot de passe incorrect")
