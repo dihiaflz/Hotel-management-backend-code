@@ -15,8 +15,12 @@ signInRouter.post("/", async (req, res) => {
             const valide = await bcrypt.compare(req.body.password, user.password)
             if(valide){
                 const token = jwt.sign({user : user}, process.env.SECRET, {expiresIn: "7d"})
+                const data = {
+                    token : token,
+                    user : user
+                }
                 console.log("Success sign in")
-                res.status(200).send(token)
+                res.status(200).send(data)
             }else{
                 console.log("mot de passe incorrect")
                 res.status(404).send("mot de passe incorrect")
