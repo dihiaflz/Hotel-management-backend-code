@@ -41,9 +41,9 @@ usersRouter.get("/", authMiddleware, async (req, res) => {
     }
 })
 
-usersRouter.post("/deleteUser/:id" , authMiddleware, async(req, res) => {
+usersRouter.post("/deleteUser" , authMiddleware, async(req, res) => {
     try{
-        await Users.findOneAndDelete({_id : req.params.id})
+        await Users.findOneAndDelete({_id : req.body.id})
         console.log("success suppression d'un user")
         res.status(200).send("success suppression d'un user")
     }catch (error) {

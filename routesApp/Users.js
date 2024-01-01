@@ -41,4 +41,15 @@ usersRouter.post("/", authMiddleware, async (req, res) => {
     }
 })
 
+usersRouter.post("/deleteUser" , authMiddleware, async(req, res) => {
+    try{
+        await Users.findOneAndDelete({_id : req.body.id})
+        console.log("success suppression d'un user")
+        res.status(200).send("success suppression d'un user")
+    }catch (error) {
+        console.log("erreur lors de la suppression d'un utilisateur : ", error)
+        res.status(500).send("erreur lors de la suppression d'un utilisateur : ", error) 
+    }
+})
+
 module.exports = usersRouter
